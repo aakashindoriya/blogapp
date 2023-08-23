@@ -40,7 +40,7 @@ export default function Login() {
     if (auth.isAuth) {
       toast({
         title: `Welcome to AI-Blogs`,
-        description: "Registration successfull",
+        description: "LogIn successfull",
         status: "success",
         duration: 2000,
         isClosable: true,

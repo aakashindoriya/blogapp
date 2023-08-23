@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import AllRoutes from './routes/AllRoutes';
+import Navbar from './routes/Navbar';
 
 function App() {
   return (
     <>
+      <Navbar />
       <AllRoutes />
     </>
   );

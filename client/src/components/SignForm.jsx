@@ -12,29 +12,39 @@ import {
   Text,
   useColorModeValue,
   useToast,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SignUp } from "../redux/actions/auth.actions";
 let init = {
   email: "",
   password: "",
   name: "",
 };
-
+const ValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
 export default function Signup() {
   const auth = useSelector((s) => s.auth);
   let dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [emailError, SetEmailError] = useState(false);
   const [data, setdata] = useState(init);
   const toast = useToast();
   function handleChange(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
   }
   async function HandleSignup() {
+    if (!ValidEmail(data.email)) {
+      SetEmailError(true);
+      alert("plase enter valid email");
+      return;
+    }
     dispatch(SignUp(data));
     setdata(init);
   }
@@ -104,6 +114,9 @@ export default function Signup() {
                 value={data.email}
                 onChange={(e) => handleChange(e)}
               />
+              {emailError && (
+                <FormErrorMessage>Please Enter A valid Email</FormErrorMessage>
+              )}
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>

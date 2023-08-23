@@ -6,11 +6,13 @@ import {
     combineReducers
 } from 'redux';
 import authReducer from './reducers/auth.reducer';
+import { blogReducer } from './reducers/blog.reducer';
 
 
 
 let root = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    blog: blogReducer
 })
 
 
