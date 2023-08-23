@@ -4,7 +4,7 @@ const express = require("express")
 const cors = require("cors")
 const Connect = require("./config/db")
 const userRoute = require("./routes/user.route")
-
+const blogRoute = require("./routes/blog.route")
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.get("/", (req, res) => { res.status(200).send("welcome") })
 app.use("/user", userRoute)
-
+app.use("/blog", blogRoute)
 
 app.listen(process.env.PORT || 8080, () => {
     Connect()
