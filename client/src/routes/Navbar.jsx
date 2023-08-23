@@ -17,6 +17,7 @@ function Navbar() {
     >
       <Link to="/">Home</Link>
       <Link to="myblogs">MyBlogs</Link>
+      <Link to="createblog">Create Blog</Link>
       <Link to="login">Login</Link>
       <Link to="signup">Signup</Link>
     </HStack>

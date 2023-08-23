@@ -4,6 +4,7 @@ import Login from "../components/LoginForm";
 import Signup from "../components/SignForm";
 import CreateBlogForm from "../components/CreateBlogForm";
 import MyBlogs from "./MyBlogs";
+import Private from "./Private";
 
 export default function AllRoutes() {
   return (
@@ -11,8 +12,22 @@ export default function AllRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/createblog" element={<CreateBlogForm />} />
-      <Route path="/myBlogs" element={<MyBlogs />} />
+      <Route
+        path="/createblog"
+        element={
+          <Private>
+            <CreateBlogForm />
+          </Private>
+        }
+      />
+      <Route
+        path="/myBlogs"
+        element={
+          <Private>
+            <MyBlogs />
+          </Private>
+        }
+      />
     </Routes>
   );
 }

@@ -6,7 +6,6 @@ const GetBlogs = async (req, res) => {
         let Query = {}
         if (category) { Query.category = category }
         if (title) Query.title = new RegExp(title, 'i')
-        console.log(Query)
         const blogs = await Blog.find(Query).skip((page - 1) * 10).limit(10).populate("author", { name: 1, _id: 0 })
         return res.status(200).send(blogs)
     } catch (error) {
@@ -52,6 +51,7 @@ const EditBlog = async (req, res) => {
 }
 const DeletBlog = async (req, res) => {
     try {
+        const { id } = req.params
         await Blog.deleteOne({ _id: id, author: req.user.id })
         res.status(201).send({ massage: "deleted successfully", id })
     } catch (error) {

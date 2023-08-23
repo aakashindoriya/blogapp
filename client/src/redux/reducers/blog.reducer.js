@@ -21,6 +21,7 @@ export const blogReducer = (state = init, { type, payload }) => {
             isLoading: false,
             isError: false,
             blogs: [...state.blogs.filter((el) => el._id != payload.id)],
+            myBlogs: [...state.myBlogs.filter((el) => el._id != payload.id)],
         }
         case EDITBLOG: return {
             ...state,
